@@ -40,8 +40,8 @@ public class CarpetThrundlestoneAddition implements CarpetExtension, ModInitiali
     }
 
     @Override
-    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
-        PaletteCommand.register(dispatcher, commandBuildContext);
+    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext buildContext) {
+        PaletteCommand.register(dispatcher);
     }
 
     @Override
