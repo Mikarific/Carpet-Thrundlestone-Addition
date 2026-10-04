@@ -28,5 +28,6 @@
   },
   "custom": {
     "modmenu:parent": "carpet"
-  }
+  },
+  "accessWidener": "carpet-thrundlestone-addition.accesswidener"
 }

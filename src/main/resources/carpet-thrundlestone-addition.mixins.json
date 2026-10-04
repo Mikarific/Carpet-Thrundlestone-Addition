@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LevelAccessor",
+    "LevelChunkSectionAccessor",
+    "PalettedContainerAccessor",
     "loggers.CollectingNeighborUpdaterMixin_asyncBlockUpdates",
     "loggers.MonsterRoomFeatureMixin_dungeon",
     "rules.BlockBehaviorMixin_asyncBeaconUpdates",
