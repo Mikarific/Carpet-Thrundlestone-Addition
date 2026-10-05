@@ -36,6 +36,14 @@ Excludes dungeons from the dungeon logger that aren't viable for survival thrund
 * Allowed options: `true`, `false`
 * Categories: `THRUNDLESTONE`  
 
+## maxChainedNeighborUpdates
+Changes the "max-chained-neighbor-updates" value of the server.  
+Set to -1 to not override the value in server settings.
+* Type: `Integer`
+* Default value: `-1`
+* Suggested options: `-1`, `0`, `65535`, `1000000`, `2147483647`
+* Categories: `THRUNDLESTONE`, `CREATIVE`  
+
 # Loggers
 ## asyncBlockUpdates
 

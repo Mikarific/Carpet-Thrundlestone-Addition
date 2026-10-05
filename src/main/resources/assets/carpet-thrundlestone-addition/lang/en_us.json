@@ -8,6 +8,6 @@
   "carpet.rule.asyncBeaconUpdatesUpdatesDirectly.extra.0": "Rule \"asyncBeaconUpdates\" needs to be on for it to work",
   "carpet.rule.commandPalette.desc": "Enables /palette command to get information about the palette",
   "carpet.rule.dungeonLoggerExcludeNonViable.desc": "Excludes dungeons from the dungeon logger that aren't viable for survival thrundlestone setups",
-  "carpet.rule.maxChainedNeighborUpdates.desc": "Changes the \"max-chained-neighbor-updates\" value of the server.",
-  "carpet.rule.maxChainedNeighborUpdates.extra.0": "Set to -1 to not override the value in server settings."
+  "carpet.rule.maxChainedNeighborUpdates.desc": "Changes the \"max-chained-neighbor-updates\" value of the server",
+  "carpet.rule.maxChainedNeighborUpdates.extra.0": "Set to -1 to not override the value in server settings"
 }
