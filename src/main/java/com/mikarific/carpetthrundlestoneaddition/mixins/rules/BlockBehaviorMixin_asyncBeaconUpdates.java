@@ -3,7 +3,7 @@ package com.mikarific.carpetthrundlestoneaddition.mixins.rules;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneAddition;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneSettings;
 import com.mikarific.carpetthrundlestoneaddition.helpers.mixin.CollectingNeighborUpdaterExtension;
-import com.mikarific.carpetthrundlestoneaddition.mixins.LevelAccessor;
+import com.mikarific.carpetthrundlestoneaddition.mixins.accessors.LevelAccessor;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.Epoll;
 import net.minecraft.core.BlockPos;
@@ -33,7 +33,7 @@ public class BlockBehaviorMixin_asyncBeaconUpdates {
     @Unique private static final Map<ResourceKey<Level>, Set<Long>> POWERED_BEACONS = new HashMap<>();
 
     @Inject(method = "neighborChanged", at = @At("HEAD"))
-    private void beaconPowered(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean movedByPiston, CallbackInfo ci) {
+    private void thrundlestone$beaconPowered(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean movedByPiston, CallbackInfo ci) {
         Block beacon = state.getBlock();
         if (!(beacon instanceof BeaconBlock)) return;
 
@@ -58,7 +58,7 @@ public class BlockBehaviorMixin_asyncBeaconUpdates {
             eventLoopGroup = ServerConnectionListener.SERVER_EVENT_GROUP.get();
         }
 
-        CollectingNeighborUpdater neighborUpdater = (CollectingNeighborUpdater) ((LevelAccessor) level).getNeighborUpdater();
+        CollectingNeighborUpdater neighborUpdater = (CollectingNeighborUpdater) ((LevelAccessor) level).thrundlestone$getNeighborUpdater();
         ((CollectingNeighborUpdaterExtension) neighborUpdater).thrundlestone$runAfter(() -> eventLoopGroup.next().execute(() -> {
             try {
                 if (CarpetThrundlestoneSettings.asyncBeaconUpdatesUpdatesDirectly) {

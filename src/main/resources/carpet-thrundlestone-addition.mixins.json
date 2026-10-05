@@ -4,12 +4,14 @@
   "package": "com.mikarific.carpetthrundlestoneaddition.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "LevelAccessor",
-    "PalettedContainerAccessor",
+    "accessors.CollectingNeighborUpdaterAccessor",
+    "accessors.LevelAccessor",
+    "accessors.PalettedContainerAccessor",
     "loggers.CollectingNeighborUpdaterMixin_asyncBlockUpdates",
     "loggers.MonsterRoomFeatureMixin_dungeon",
     "rules.BlockBehaviorMixin_asyncBeaconUpdates",
-    "rules.CollectingNeighborUpdaterMixin_asyncBeaconUpdates"
+    "rules.CollectingNeighborUpdaterMixin_asyncBeaconUpdates",
+    "rules.ServerLevel_maxChainedNeighborUpdates"
   ],
   "client": [
   ],

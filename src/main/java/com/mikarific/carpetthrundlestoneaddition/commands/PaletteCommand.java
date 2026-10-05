@@ -4,7 +4,7 @@ import carpet.utils.CommandHelper;
 import carpet.utils.Messenger;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneAddition;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneSettings;
-import com.mikarific.carpetthrundlestoneaddition.mixins.PalettedContainerAccessor;
+import com.mikarific.carpetthrundlestoneaddition.mixins.accessors.PalettedContainerAccessor;
 import com.mojang.brigadier.CommandDispatcher;
 import io.netty.buffer.Unpooled;
 import net.minecraft.commands.CommandSourceStack;
@@ -93,7 +93,7 @@ public class PaletteCommand {
             LevelChunkSection section = chunk.getSection(sectionIndex);
             PalettedContainer<BlockState> container = section.getStates();
             @SuppressWarnings("unchecked")
-            PalettedContainer.Data<BlockState> data = ((PalettedContainerAccessor<BlockState>) container).getData();
+            PalettedContainer.Data<BlockState> data = ((PalettedContainerAccessor<BlockState>) container).thrundlestone$getData();
 
             BitStorage storage = data.storage();
             int bits = storage.getBits();

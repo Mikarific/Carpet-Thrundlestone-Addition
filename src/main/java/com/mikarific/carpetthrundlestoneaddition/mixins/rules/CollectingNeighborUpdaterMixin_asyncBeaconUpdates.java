@@ -29,7 +29,7 @@ public abstract class CollectingNeighborUpdaterMixin_asyncBeaconUpdates implemen
     }
 
     @Inject(method = "runUpdates", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/redstone/CollectingNeighborUpdater;count:I", opcode = Opcodes.PUTFIELD, shift = At.Shift.AFTER))
-    private void afterRunUpdates(CallbackInfo ci) {
+    private void thrundlestone$afterRunUpdates(CallbackInfo ci) {
         for (Runnable callback : thrundlestone$afterUpdates) {
             callback.run();
         }

@@ -1,4 +1,4 @@
-package com.mikarific.carpetthrundlestoneaddition.mixins;
+package com.mikarific.carpetthrundlestoneaddition.mixins.accessors;
 
 import net.minecraft.world.level.chunk.PalettedContainer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -7,5 +7,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(PalettedContainer.class)
 public interface PalettedContainerAccessor<T> {
     @Accessor("data")
-    PalettedContainer.Data<T> getData();
+    PalettedContainer.Data<T> thrundlestone$getData();
 }

@@ -22,19 +22,19 @@ public class MonsterRoomFeatureMixin_dungeon {
     @Unique private int roomHeight;
 
     @ModifyExpressionValue(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextInt(I)I", ordinal = 0))
-    private int captureWidth(int original) {
+    private int thrundlestone$captureWidth(int original) {
         this.roomWidth = original + 2;
         return original;
     }
 
     @ModifyExpressionValue(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextInt(I)I", ordinal = 1))
-    private int captureHeight(int original) {
+    private int thrundlestone$captureHeight(int original) {
         this.roomHeight = original + 2;
         return original;
     }
 
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextInt(I)I", ordinal = 1, shift = At.Shift.AFTER))
-    private void spawnerAttempt(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext, CallbackInfoReturnable<Boolean> cir) {
+    private void thrundlestone$spawnerAttempt(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext, CallbackInfoReturnable<Boolean> cir) {
         BlockPos spawnerPos = featurePlaceContext.origin();
 
         if (CarpetThrundlestoneSettings.dungeonLoggerExcludeNonViable) {
@@ -53,7 +53,7 @@ public class MonsterRoomFeatureMixin_dungeon {
     }
 
     @Inject(method = "place", at = @At(value = "INVOKE", target = "net/minecraft/world/level/WorldGenLevel.isEmptyBlock(Lnet/minecraft/core/BlockPos;)Z", ordinal = 2))
-    private void chestAttempt(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 0) BlockPos spawnerPos, @Local(ordinal = 1) BlockPos chestPos) {
+    private void thrundlestone$chestAttempt(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 0) BlockPos spawnerPos, @Local(ordinal = 1) BlockPos chestPos) {
         if (CarpetThrundlestoneSettings.dungeonLoggerExcludeNonViable) {
             boolean chestAndSpawnerInDifferentChunks = spawnerPos.getX() >> 4 != chestPos.getX() >> 4 || spawnerPos.getZ() >> 4 != chestPos.getZ() >> 4;
             if (!chestAndSpawnerInDifferentChunks) return;

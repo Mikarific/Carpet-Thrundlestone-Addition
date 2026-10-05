@@ -1,4 +1,4 @@
-package com.mikarific.carpetthrundlestoneaddition.mixins;
+package com.mikarific.carpetthrundlestoneaddition.mixins.accessors;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.redstone.NeighborUpdater;
@@ -8,5 +8,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(Level.class)
 public interface LevelAccessor {
     @Accessor("neighborUpdater")
-    NeighborUpdater getNeighborUpdater();
+    NeighborUpdater thrundlestone$getNeighborUpdater();
 }

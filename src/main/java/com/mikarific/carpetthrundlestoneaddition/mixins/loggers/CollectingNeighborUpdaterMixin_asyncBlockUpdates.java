@@ -8,7 +8,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.redstone.CollectingNeighborUpdater;
 import org.objectweb.asm.Opcodes;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,7 +21,7 @@ public class CollectingNeighborUpdaterMixin_asyncBlockUpdates {
     @Shadow @Final private Level level;
 
     @Inject(method = "addAndRun", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/redstone/CollectingNeighborUpdater;runUpdates()V"))
-    private void queueStarted(BlockPos blockPos, @Coerce Object neighborUpdates, CallbackInfo ci) {
+    private void thrundlestone$queueStarted(BlockPos blockPos, @Coerce Object neighborUpdates, CallbackInfo ci) {
         MinecraftServer server = level.getServer();
         if (server == null || server.isSameThread()) return;
 
@@ -35,7 +34,7 @@ public class CollectingNeighborUpdaterMixin_asyncBlockUpdates {
     }
 
     @Inject(method = "runUpdates", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/redstone/CollectingNeighborUpdater;count:I", opcode = Opcodes.PUTFIELD, shift = At.Shift.AFTER))
-    private void queueFinished(CallbackInfo ci) {
+    private void thrundlestone$queueFinished(CallbackInfo ci) {
         MinecraftServer server = level.getServer();
         if (server == null || server.isSameThread()) return;
 
@@ -48,7 +47,7 @@ public class CollectingNeighborUpdaterMixin_asyncBlockUpdates {
     }
 
     @Inject(method = "addAndRun", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;)V"))
-    private void updatesSkipped(BlockPos blockPos, @Coerce Object neighborUpdates, CallbackInfo ci) {
+    private void thrundlestone$updatesSkipped(BlockPos blockPos, @Coerce Object neighborUpdates, CallbackInfo ci) {
         MinecraftServer server = level.getServer();
         if (server == null || server.isSameThread()) return;
 
