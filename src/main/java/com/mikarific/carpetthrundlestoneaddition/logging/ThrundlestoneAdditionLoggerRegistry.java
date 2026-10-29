@@ -4,11 +4,11 @@ import carpet.logging.Logger;
 import carpet.logging.LoggerRegistry;
 
 public class ThrundlestoneAdditionLoggerRegistry {
-    public static boolean __asyncBlockUpdates;
+    public static boolean __asyncUpdates;
     public static boolean __dungeons;
 
     public static void registerLoggers() {
-        registerLogger("asyncBlockUpdates", standardLogger("asyncBlockUpdates", "all", new String[]{"thread", "skips", "all"}, true));
+        registerLogger("asyncUpdates", standardLogger("asyncUpdates", "all", new String[]{"thread", "skips", "all"}, true));
         registerLogger("dungeons", standardLogger("dungeons", "all", new String[]{"spawner", "chest", "all"}, true));
     }
 

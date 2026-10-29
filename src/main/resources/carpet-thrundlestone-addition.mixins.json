@@ -7,10 +7,11 @@
     "accessors.CollectingNeighborUpdaterAccessor",
     "accessors.LevelAccessor",
     "accessors.PalettedContainerAccessor",
-    "loggers.CollectingNeighborUpdaterMixin_asyncBlockUpdates",
+    "loggers.CollectingNeighborUpdaterMixin_asyncUpdates",
     "loggers.MonsterRoomFeatureMixin_dungeon",
     "rules.BlockBehaviorMixin_asyncBeaconUpdates",
     "rules.CollectingNeighborUpdaterMixin_asyncBeaconUpdates",
+    "rules.CollectingNeighborUpdaterMixin_asyncFeederSimulator",
     "rules.ServerLevel_maxChainedNeighborUpdates"
   ],
   "client": [

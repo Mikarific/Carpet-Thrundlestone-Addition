@@ -19,6 +19,12 @@ public class CarpetThrundlestoneSettings {
     @Rule(categories = {THRUNDLESTONE, CREATIVE})
     public static boolean asyncBeaconUpdatesUpdatesDirectly = false;
 
+    @Rule(categories = {THRUNDLESTONE, CREATIVE})
+    public static boolean asyncUpdates = false;
+
+    @Rule(categories = {THRUNDLESTONE})
+    public static boolean asyncUpdatesLoggerIgnoresRule = false;
+
     @Rule(categories = {THRUNDLESTONE, COMMAND})
     public static String commandPalette = "ops";
 

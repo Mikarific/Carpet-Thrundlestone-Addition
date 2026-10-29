@@ -3,6 +3,7 @@ package com.mikarific.carpetthrundlestoneaddition.mixins.loggers;
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneAddition;
+import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -18,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CollectingNeighborUpdater.class)
-public class CollectingNeighborUpdaterMixin_asyncBlockUpdates {
+public class CollectingNeighborUpdaterMixin_asyncUpdates {
     @Shadow @Final private Level level;
 
     @Inject(method = "addAndRun", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/redstone/CollectingNeighborUpdater;runUpdates()V"))
@@ -26,8 +27,9 @@ public class CollectingNeighborUpdaterMixin_asyncBlockUpdates {
         MinecraftServer server = level.getServer();
         if (server == null || server.isSameThread()) return;
 
+        if (CarpetThrundlestoneSettings.asyncUpdatesLoggerIgnoresRule && CarpetThrundlestoneSettings.asyncUpdates) return;
         CarpetThrundlestoneAddition.LOGGER.info("Asynchronous block update queue started at {}, {}, {} on thread {}", blockPos.getX(), blockPos.getY(), blockPos.getZ(), Thread.currentThread().getName());
-        LoggerRegistry.getLogger("asyncBlockUpdates").log((option) -> {
+        LoggerRegistry.getLogger("asyncUpdates").log((option) -> {
             if (option.equals("all") || option.equals("thread")) {
                 return new Component[]{Messenger.c("y Asynchronous block update queue started at ", Messenger.tp("l", blockPos), "y  on thread ", Messenger.s(Thread.currentThread().getName(), "d"))};
             }
@@ -40,8 +42,9 @@ public class CollectingNeighborUpdaterMixin_asyncBlockUpdates {
         MinecraftServer server = level.getServer();
         if (server == null || server.isSameThread()) return;
 
+        if (CarpetThrundlestoneSettings.asyncUpdatesLoggerIgnoresRule && CarpetThrundlestoneSettings.asyncUpdates) return;
         CarpetThrundlestoneAddition.LOGGER.info("Asynchronous block update queue finished on thread {}", Thread.currentThread().getName());
-        LoggerRegistry.getLogger("asyncBlockUpdates").log((option) -> {
+        LoggerRegistry.getLogger("asyncUpdates").log((option) -> {
             if (option.equals("all") || option.equals("thread")) {
                 return new Component[]{Messenger.c("y Asynchronous block update queue finished on thread ", Messenger.s(Thread.currentThread().getName(), "d"))};
             }
@@ -54,9 +57,11 @@ public class CollectingNeighborUpdaterMixin_asyncBlockUpdates {
         MinecraftServer server = level.getServer();
         if (server == null || server.isSameThread()) return;
 
-        LoggerRegistry.getLogger("asyncBlockUpdates").log((option) -> {
+        if (CarpetThrundlestoneSettings.asyncUpdatesLoggerIgnoresRule && CarpetThrundlestoneSettings.asyncUpdates) return;
+        CarpetThrundlestoneAddition.LOGGER.info("Update skipping occurred at {}, {}, {} on thread {}", blockPos.getX(), blockPos.getY(), blockPos.getZ(), Thread.currentThread().getName());
+        LoggerRegistry.getLogger("asyncUpdates").log((option) -> {
             if (option.equals("all") || option.equals("skips")) {
-                return new Component[]{Messenger.c("r Update skipping occured at ", Messenger.tp("l", blockPos), "r  on thread ", Messenger.s(Thread.currentThread().getName(), "d"))};
+                return new Component[]{Messenger.c("r Update skipping occurred at ", Messenger.tp("l", blockPos), "r  on thread ", Messenger.s(Thread.currentThread().getName(), "d"))};
             }
             return null;
         });
