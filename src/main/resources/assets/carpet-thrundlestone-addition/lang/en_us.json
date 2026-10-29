@@ -1,14 +1,14 @@
 {
   "carpet.category.thrundlestone": "thrundlestone",
 
-  "carpet.rule.asyncBeaconUpdates.desc": "Beacons send out async §lcomparator§r block updates when powered",
+  "carpet.rule.asyncBeaconUpdates.desc": "Beacons send out async §lcomparator§r block updates when powered or right clicked by a bundle",
   "carpet.rule.asyncBeaconUpdates.extra.0": "Sends out updates to neighboring comparators to reflect the thrundlestone method of getting an async update",
   "carpet.rule.asyncBeaconUpdates.extra.1": "Different from the implementation in carpetmod112, use with rule \"asyncBeaconUpdatesUpdateDirectly\" to act like carpetmod112",
   "carpet.rule.asyncBeaconUpdatesUpdatesDirectly.desc": "Makes rule \"asyncBeaconUpdates\" update blocks directly, similar to carpetmod112",
   "carpet.rule.asyncBeaconUpdatesUpdatesDirectly.extra.0": "Rule \"asyncBeaconUpdates\" needs to be on for it to work",
-  "carpet.rule.asyncUpdates.desc": "Cause block updates to be executed async.",
-  "carpet.rule.asyncUpdates.extra.0": "If true, every block update is executed async which simulates an async feeder.",
-  "carpet.rule.asyncUpdatesLoggerIgnoresRule.desc": "Make the \"asyncUpdates\" logger not fire while the \"asyncUpdates\" rule is set to true.",
+  "carpet.rule.asyncUpdates.desc": "Cause block updates to be executed async",
+  "carpet.rule.asyncUpdates.extra.0": "If true, every block update is executed async which simulates an async feeder",
+  "carpet.rule.asyncUpdatesLoggerIgnoresRule.desc": "Make the \"asyncUpdates\" logger not fire while the \"asyncUpdates\" rule is set to true",
   "carpet.rule.commandManipulate.desc": "Enables /manipulate command for world related manipulation command",
   "carpet.rule.commandPalette.desc": "Enables /palette command to get information about the palette",
   "carpet.rule.dungeonLoggerExcludeNonViable.desc": "Excludes dungeons from the dungeon logger that aren't viable for survival thrundlestone setups",
