@@ -26,6 +26,9 @@
     "minecraft": "${minecraft_version}",
     "carpet": "*"
   },
+  "suggests": {
+    "carpet-tis-addition": "*"
+  },
   "custom": {
     "modmenu:parent": "carpet"
   },

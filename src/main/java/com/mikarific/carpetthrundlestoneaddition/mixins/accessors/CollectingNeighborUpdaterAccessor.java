@@ -10,4 +10,11 @@ public interface CollectingNeighborUpdaterAccessor {
     @Mutable
     @Accessor("maxChainedNeighborUpdates")
     void thrundlestone$setMaxChainedNeighborUpdates(int maxChainedNeighborUpdates);
+
+    @Accessor("count")
+    int thrundlestone$getCount();
+
+    @Mutable
+    @Accessor("count")
+    void thrundlestone$setCount(int count);
 }

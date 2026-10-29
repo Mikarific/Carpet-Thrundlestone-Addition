@@ -9,6 +9,7 @@
   "carpet.rule.asyncUpdates.desc": "Cause block updates to be executed async.",
   "carpet.rule.asyncUpdates.extra.0": "If true, every block update is executed async which simulates an async feeder.",
   "carpet.rule.asyncUpdatesLoggerIgnoresRule.desc": "Make the \"asyncUpdates\" logger not fire while the \"asyncUpdates\" rule is set to true.",
+  "carpet.rule.commandManipulate.desc": "Enables /manipulate command for world related manipulation command",
   "carpet.rule.commandPalette.desc": "Enables /palette command to get information about the palette",
   "carpet.rule.dungeonLoggerExcludeNonViable.desc": "Excludes dungeons from the dungeon logger that aren't viable for survival thrundlestone setups",
   "carpet.rule.maxChainedNeighborUpdates.desc": "Changes the \"max-chained-neighbor-updates\" value of the server",

@@ -4,11 +4,14 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.GsonBuilder;
+import com.mikarific.carpetthrundlestoneaddition.commands.ManipulateCommand;
 import com.mikarific.carpetthrundlestoneaddition.commands.PaletteCommand;
+import com.mikarific.carpetthrundlestoneaddition.helpers.settings.CarpetTISConflictSettings;
 import com.mikarific.carpetthrundlestoneaddition.logging.ThrundlestoneAdditionLoggerRegistry;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import org.apache.commons.io.IOUtils;
@@ -32,6 +35,9 @@ public class CarpetThrundlestoneAddition implements CarpetExtension, ModInitiali
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetThrundlestoneSettings.class);
+        if (!FabricLoader.getInstance().isModLoaded("carpet-tis-addition")) {
+            CarpetServer.settingsManager.parseSettingsClass(CarpetTISConflictSettings.class);
+        }
     }
 
     @Override
@@ -41,6 +47,7 @@ public class CarpetThrundlestoneAddition implements CarpetExtension, ModInitiali
 
     @Override
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext buildContext) {
+        ManipulateCommand.register(dispatcher);
         PaletteCommand.register(dispatcher);
     }
 

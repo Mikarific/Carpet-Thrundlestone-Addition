@@ -17,6 +17,7 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
     maven { url 'https://masa.dy.fi/maven' }
+    maven { url 'https://api.modrinth.com/maven' }
 }
 
 dependencies {
@@ -25,7 +26,7 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "carpet:fabric-carpet:${project.minecraft_version}-${project.carpet_version}"
-
+    modCompileOnly "maven.modrinth:jE0SjGuf:${project.carpet_tis_version}"
 }
 
 processResources {
