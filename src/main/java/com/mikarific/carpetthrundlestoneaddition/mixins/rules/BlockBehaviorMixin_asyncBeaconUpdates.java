@@ -10,6 +10,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerConnectionListener;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BeaconBlock;
 import net.minecraft.world.level.block.Block;
@@ -17,11 +22,13 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.CollectingNeighborUpdater;
 import net.minecraft.world.level.redstone.Orientation;
+import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -32,24 +39,10 @@ import java.util.Set;
 public class BlockBehaviorMixin_asyncBeaconUpdates {
     @Unique private static final Map<ResourceKey<Level>, Set<Long>> POWERED_BEACONS = new HashMap<>();
 
-    @Inject(method = "neighborChanged", at = @At("HEAD"))
-    private void thrundlestone$beaconPowered(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean movedByPiston, CallbackInfo ci) {
-        Block beacon = state.getBlock();
-        if (!(beacon instanceof BeaconBlock)) return;
-
-        Set<Long> beacons = POWERED_BEACONS.computeIfAbsent(level.dimension(), ignored -> new HashSet<>());
-
-        long posLong = pos.asLong();
-        if (!level.hasNeighborSignal(pos)) {
-            beacons.remove(posLong);
-            return;
-        }
-        if (!CarpetThrundlestoneSettings.asyncBeaconUpdates) return;
-
+    @Unique
+    private void sendAsyncBeaconUpdates(Level level, BlockPos pos, Block beacon) {
         MinecraftServer server = level.getServer();
         if (server == null) return;
-
-        if (!beacons.add(posLong)) return;
 
         EventLoopGroup eventLoopGroup;
         if (Epoll.isAvailable() && server.isEpollEnabled()) {
@@ -72,5 +65,34 @@ public class BlockBehaviorMixin_asyncBeaconUpdates {
                 CarpetThrundlestoneAddition.LOGGER.info("Collecting beacon updates complete.");
             }
         }));
+    }
+
+    @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
+    private void thrundlestone$beaconUseWithBundle(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
+        Block beacon = state.getBlock();
+        if (!(beacon instanceof BeaconBlock)) return;
+        if (!CarpetThrundlestoneSettings.asyncBeaconUpdates) return;
+
+        if (stack.is(ItemTags.BUNDLES)) {
+            sendAsyncBeaconUpdates(level, pos, beacon);
+            cir.setReturnValue(InteractionResult.SUCCESS);
+        }
+    }
+
+    @Inject(method = "neighborChanged", at = @At("HEAD"))
+    private void thrundlestone$beaconPowered(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean movedByPiston, CallbackInfo ci) {
+        Block beacon = state.getBlock();
+        if (!(beacon instanceof BeaconBlock)) return;
+
+        Set<Long> beacons = POWERED_BEACONS.computeIfAbsent(level.dimension(), ignored -> new HashSet<>());
+        long posLong = pos.asLong();
+        if (!level.hasNeighborSignal(pos)) {
+            beacons.remove(posLong);
+            return;
+        }
+        if (!CarpetThrundlestoneSettings.asyncBeaconUpdates) return;
+        if (!beacons.add(posLong)) return;
+
+        sendAsyncBeaconUpdates(level, pos, beacon);
     }
 }

@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ServerLevel.class)
-public class ServerLevel_maxChainedNeighborUpdates {
+public class ServerLevelMixin_maxChainedNeighborUpdates {
     @WrapOperation(method = "<init>", at = @At(value = "INVOKE", target = "net/minecraft/server/MinecraftServer.getMaxChainedNeighborUpdates()I"))
     private static int thrundlestone$getMaxChainedNeighborUpdates(MinecraftServer instance, Operation<Integer> original) {
         if (CarpetThrundlestoneSettings.maxChainedNeighborUpdates < 0) return original.call(instance);

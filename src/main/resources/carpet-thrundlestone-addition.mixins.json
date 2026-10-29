@@ -12,7 +12,7 @@
     "rules.BlockBehaviorMixin_asyncBeaconUpdates",
     "rules.CollectingNeighborUpdaterMixin_asyncBeaconUpdates",
     "rules.CollectingNeighborUpdaterMixin_asyncUpdates",
-    "rules.ServerLevel_maxChainedNeighborUpdates"
+    "rules.ServerLevelMixin_maxChainedNeighborUpdates"
   ],
   "client": [
   ],
