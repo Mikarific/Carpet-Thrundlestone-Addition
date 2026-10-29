@@ -4,6 +4,7 @@ import carpet.utils.CommandHelper;
 import carpet.utils.Messenger;
 import carpettisaddition.CarpetTISAdditionSettings;
 import com.mikarific.carpetthrundlestoneaddition.helpers.settings.CarpetTISConflictSettings;
+import com.mikarific.carpetthrundlestoneaddition.helpers.utils.MessengerExtension;
 import com.mikarific.carpetthrundlestoneaddition.mixins.accessors.CollectingNeighborUpdaterAccessor;
 import com.mikarific.carpetthrundlestoneaddition.mixins.accessors.LevelAccessor;
 import com.mojang.brigadier.CommandDispatcher;
@@ -36,21 +37,21 @@ public class ManipulateCommand {
         int count = ((CollectingNeighborUpdaterAccessor) neighborUpdater).thrundlestone$getCount();
         int newValue = count + delta;
         ((CollectingNeighborUpdaterAccessor) neighborUpdater).thrundlestone$setCount(newValue);
-        Messenger.m(source, "w Added " + delta + " to neighbor updater counter, current value: " + newValue);
+        Messenger.m(source, MessengerExtension.format("carpetthrundlestoneaddition.command.manipulate.server.neighbor_updater_counter.add", Messenger.s(String.valueOf(delta), "wb"), Messenger.s(String.valueOf(newValue), "wb")));
         return 1;
     }
 
     private static int setNeighborUpdaterCounter(CommandSourceStack source, int value) {
         NeighborUpdater neighborUpdater = ((LevelAccessor) source.getLevel()).thrundlestone$getNeighborUpdater();
         ((CollectingNeighborUpdaterAccessor) neighborUpdater).thrundlestone$setCount(value);
-        Messenger.m(source, "w Set neighbor updater counter to " + value);
+        Messenger.m(source, MessengerExtension.format("carpetthrundlestoneaddition.command.manipulate.server.neighbor_updater_counter.set", Messenger.s(String.valueOf(value), "wb")));
         return 1;
     }
 
     private static int showNeighborUpdaterCounter(CommandSourceStack source) {
         NeighborUpdater neighborUpdater = ((LevelAccessor) source.getLevel()).thrundlestone$getNeighborUpdater();
         int count = ((CollectingNeighborUpdaterAccessor) neighborUpdater).thrundlestone$getCount();
-        Messenger.m(source, "w Current neighbor updater counter value: " + count);
+        Messenger.m(source, MessengerExtension.format("carpetthrundlestoneaddition.command.manipulate.server.neighbor_updater_counter.show", Messenger.s(String.valueOf(count), "wb")));
         return 1;
     }
 }

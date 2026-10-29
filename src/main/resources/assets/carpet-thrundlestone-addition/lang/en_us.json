@@ -13,5 +13,20 @@
   "carpet.rule.commandPalette.desc": "Enables /palette command to get information about the palette",
   "carpet.rule.dungeonLoggerExcludeNonViable.desc": "Excludes dungeons from the dungeon logger that aren't viable for survival thrundlestone setups",
   "carpet.rule.maxChainedNeighborUpdates.desc": "Changes the \"max-chained-neighbor-updates\" value of the server",
-  "carpet.rule.maxChainedNeighborUpdates.extra.0": "Set to -1 to not override the value in server settings"
+  "carpet.rule.maxChainedNeighborUpdates.extra.0": "Set to -1 to not override the value in server settings",
+
+  "carpetthrundlestoneaddition.logger.asyncUpdates.started": "Asynchronous block update queue started at %1$s on thread %2$s",
+  "carpetthrundlestoneaddition.logger.asyncUpdates.finished": "Asynchronous block update queue finished on thread %1$s",
+  "carpetthrundlestoneaddition.logger.asyncUpdates.skipping": "Update skipping occurred at %1$s on thread %2$s",
+  "carpetthrundlestoneaddition.logger.dungeon.spawner": "Dungeon spawner attempted at %1$s",
+  "carpetthrundlestoneaddition.logger.dungeon.chest": "Dungeon chest attempted at %1$s",
+  "carpetthrundlestoneaddition.command.manipulate.server.neighbor_updater_counter.set": "Set neighbor updater counter to %1$s",
+  "carpetthrundlestoneaddition.command.manipulate.server.neighbor_updater_counter.add": "Added %1$s to neighbor updater counter, current value: %2$s",
+  "carpetthrundlestoneaddition.command.manipulate.server.neighbor_updater_counter.show": "Current neighbor updater counter value: %1$s",
+  "carpetthrundlestoneaddition.command.palette.bits": "Palette bit size: %1$s",
+  "carpetthrundlestoneaddition.command.palette.size": "Palette size: %1$s",
+  "carpetthrundlestoneaddition.command.palette.size.max": "Palette size §lMAX§r aka %1$s",
+  "carpetthrundlestoneaddition.command.palette.posInfo.outside": "Position is outside the world height",
+  "carpetthrundlestoneaddition.command.palette.posInfo.single": "Single value palette, no storage",
+  "carpetthrundlestoneaddition.command.palette.posInfo.failed": "Failed to get posInfo"
 }

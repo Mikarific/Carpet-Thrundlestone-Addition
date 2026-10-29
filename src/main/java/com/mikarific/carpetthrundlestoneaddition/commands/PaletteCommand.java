@@ -2,8 +2,10 @@ package com.mikarific.carpetthrundlestoneaddition.commands;
 
 import carpet.utils.CommandHelper;
 import carpet.utils.Messenger;
+import carpet.utils.Translations;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneAddition;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneSettings;
+import com.mikarific.carpetthrundlestoneaddition.helpers.utils.MessengerExtension;
 import com.mikarific.carpetthrundlestoneaddition.mixins.accessors.PalettedContainerAccessor;
 import com.mojang.brigadier.CommandDispatcher;
 import io.netty.buffer.Unpooled;
@@ -54,7 +56,7 @@ public class PaletteCommand {
         int bits = buf.readUnsignedByte();
         buf.release();
 
-        Messenger.m(source, "g Palette bit size: ", Messenger.s(String.valueOf(bits), "wb"));
+        Messenger.m(source, MessengerExtension.format("carpetthrundlestoneaddition.command.palette.bits", Messenger.s(String.valueOf(bits), "wb")));
         return 1;
     }
 
@@ -69,11 +71,11 @@ public class PaletteCommand {
         container.write(buf);
         int bits = buf.readUnsignedByte();
         if (bits == 0) {
-            Messenger.m(source, "g Palette size: ", Messenger.s("1", "wb"));
+            Messenger.m(source, MessengerExtension.format("carpetthrundlestoneaddition.command.palette.size", Messenger.s("1", "wb")));
         } else if (bits <= 8) {
-            Messenger.m(source, "g Palette size: ", Messenger.s(String.valueOf(buf.readVarInt()), "wb"));
+            Messenger.m(source, MessengerExtension.format("carpetthrundlestoneaddition.command.palette.size", Messenger.s(String.valueOf(buf.readVarInt()), "wb")));
         } else {
-            Messenger.m(source, "g Palette size ", "wb MAX", "g  aka ", Messenger.s(String.valueOf(Block.BLOCK_STATE_REGISTRY.size()), "wb"));
+            Messenger.m(source, MessengerExtension.format("carpetthrundlestoneaddition.command.palette.size.max", Messenger.s(String.valueOf(Block.BLOCK_STATE_REGISTRY.size()), "wb")));
         }
         buf.release();
         return 1;
@@ -86,7 +88,7 @@ public class PaletteCommand {
 
             int sectionIndex = chunk.getSectionIndex(blockPos.getY());
             if (sectionIndex < 0 || sectionIndex >= chunk.getSections().length) {
-                Messenger.m(source, "r Position is outside the world height");
+                Messenger.m(source, "r " + Translations.tr("carpetthrundlestoneaddition.command.palette.posInfo.outside"));
                 return 0;
             }
 
@@ -98,7 +100,7 @@ public class PaletteCommand {
             BitStorage storage = data.storage();
             int bits = storage.getBits();
             if (bits == 0) {
-                Messenger.m(source, "g Single value palette, no storage");
+                Messenger.m(source, "w " + Translations.tr("carpetthrundlestoneaddition.command.palette.posInfo.single"));
                 return 1;
             }
 
@@ -124,7 +126,7 @@ public class PaletteCommand {
 
             return 1;
         } catch (Throwable t) {
-            Messenger.m(source, "r Failed to get posInfo");
+            Messenger.m(source, "r " + Translations.tr("carpetthrundlestoneaddition.command.palette.posInfo.failed"));
             CarpetThrundlestoneAddition.LOGGER.error("Failed to get posInfo", t);
             return 0;
         }

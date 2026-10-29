@@ -5,6 +5,7 @@ import carpet.utils.Messenger;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneSettings;
+import com.mikarific.carpetthrundlestoneaddition.helpers.utils.MessengerExtension;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -46,7 +47,7 @@ public class MonsterRoomFeatureMixin_dungeon {
 
         LoggerRegistry.getLogger("dungeons").log((option) -> {
             if (option.equals("all") || option.equals("spawner")) {
-                return new Component[]{Messenger.c("g [", Messenger.s("Dungeon", "e"), "g ] Spawner attempted at ", Messenger.tp("l", spawnerPos))};
+                return new Component[]{MessengerExtension.format("carpetthrundlestoneaddition.logger.dungeon.spawner", "e", Messenger.tp("l", spawnerPos))};
             }
             return null;
         });
@@ -66,7 +67,7 @@ public class MonsterRoomFeatureMixin_dungeon {
 
         LoggerRegistry.getLogger("dungeons").log((option) -> {
             if (option.equals("all") || option.equals("chest")) {
-                return new Component[]{Messenger.c("g [", Messenger.s("Dungeon", "e"), "g ] Chest attempted at ", Messenger.tp("l", chestPos))};
+                return new Component[]{MessengerExtension.format("carpetthrundlestoneaddition.logger.dungeon.chest", "e", Messenger.tp("l", chestPos))};
             }
             return null;
         });

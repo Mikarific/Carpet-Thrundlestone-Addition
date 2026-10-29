@@ -7,6 +7,7 @@
     "accessors.CollectingNeighborUpdaterAccessor",
     "accessors.LevelAccessor",
     "accessors.PalettedContainerAccessor",
+    "accessors.TranslatableContentsAccessor",
     "loggers.CollectingNeighborUpdaterMixin_asyncUpdates",
     "loggers.MonsterRoomFeatureMixin_dungeon",
     "rules.BlockBehaviorMixin_asyncBeaconUpdates",

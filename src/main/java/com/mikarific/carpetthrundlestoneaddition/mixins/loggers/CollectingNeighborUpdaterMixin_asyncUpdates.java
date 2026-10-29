@@ -4,6 +4,7 @@ import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneAddition;
 import com.mikarific.carpetthrundlestoneaddition.CarpetThrundlestoneSettings;
+import com.mikarific.carpetthrundlestoneaddition.helpers.utils.MessengerExtension;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -31,7 +32,7 @@ public class CollectingNeighborUpdaterMixin_asyncUpdates {
         CarpetThrundlestoneAddition.LOGGER.info("Asynchronous block update queue started at {}, {}, {} on thread {}", blockPos.getX(), blockPos.getY(), blockPos.getZ(), Thread.currentThread().getName());
         LoggerRegistry.getLogger("asyncUpdates").log((option) -> {
             if (option.equals("all") || option.equals("thread")) {
-                return new Component[]{Messenger.c("y Asynchronous block update queue started at ", Messenger.tp("l", blockPos), "y  on thread ", Messenger.s(Thread.currentThread().getName(), "d"))};
+                return new Component[]{MessengerExtension.format("carpetthrundlestoneaddition.logger.asyncUpdates.started", "y", Messenger.tp("l", blockPos), Messenger.s(Thread.currentThread().getName(), "d"))};
             }
             return null;
         });
@@ -46,7 +47,7 @@ public class CollectingNeighborUpdaterMixin_asyncUpdates {
         CarpetThrundlestoneAddition.LOGGER.info("Asynchronous block update queue finished on thread {}", Thread.currentThread().getName());
         LoggerRegistry.getLogger("asyncUpdates").log((option) -> {
             if (option.equals("all") || option.equals("thread")) {
-                return new Component[]{Messenger.c("y Asynchronous block update queue finished on thread ", Messenger.s(Thread.currentThread().getName(), "d"))};
+                return new Component[]{MessengerExtension.format("carpetthrundlestoneaddition.logger.asyncUpdates.finished", "y", Messenger.s(Thread.currentThread().getName(), "d"))};
             }
             return null;
         });
@@ -61,7 +62,7 @@ public class CollectingNeighborUpdaterMixin_asyncUpdates {
         CarpetThrundlestoneAddition.LOGGER.info("Update skipping occurred at {}, {}, {} on thread {}", blockPos.getX(), blockPos.getY(), blockPos.getZ(), Thread.currentThread().getName());
         LoggerRegistry.getLogger("asyncUpdates").log((option) -> {
             if (option.equals("all") || option.equals("skips")) {
-                return new Component[]{Messenger.c("r Update skipping occurred at ", Messenger.tp("l", blockPos), "r  on thread ", Messenger.s(Thread.currentThread().getName(), "d"))};
+                return new Component[]{MessengerExtension.format("carpetthrundlestoneaddition.logger.asyncUpdates.skipping", "r", Messenger.tp("l", blockPos), Messenger.s(Thread.currentThread().getName(), "d"))};
             }
             return null;
         });
