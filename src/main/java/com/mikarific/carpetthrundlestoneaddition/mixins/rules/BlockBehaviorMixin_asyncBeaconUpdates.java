@@ -40,7 +40,7 @@ public class BlockBehaviorMixin_asyncBeaconUpdates {
     @Unique private static final Map<ResourceKey<Level>, Set<Long>> POWERED_BEACONS = new HashMap<>();
 
     @Unique
-    private void sendAsyncBeaconUpdates(Level level, BlockPos pos, Block beacon) {
+    private void thrundlestone$sendAsyncBeaconUpdates(Level level, BlockPos pos, Block beacon) {
         MinecraftServer server = level.getServer();
         if (server == null) return;
 
@@ -74,7 +74,7 @@ public class BlockBehaviorMixin_asyncBeaconUpdates {
         if (!CarpetThrundlestoneSettings.asyncBeaconUpdates) return;
 
         if (stack.is(ItemTags.BUNDLES)) {
-            sendAsyncBeaconUpdates(level, pos, beacon);
+            thrundlestone$sendAsyncBeaconUpdates(level, pos, beacon);
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
     }
@@ -93,6 +93,6 @@ public class BlockBehaviorMixin_asyncBeaconUpdates {
         if (!CarpetThrundlestoneSettings.asyncBeaconUpdates) return;
         if (!beacons.add(posLong)) return;
 
-        sendAsyncBeaconUpdates(level, pos, beacon);
+        thrundlestone$sendAsyncBeaconUpdates(level, pos, beacon);
     }
 }
