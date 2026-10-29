@@ -11,7 +11,7 @@
     "loggers.MonsterRoomFeatureMixin_dungeon",
     "rules.BlockBehaviorMixin_asyncBeaconUpdates",
     "rules.CollectingNeighborUpdaterMixin_asyncBeaconUpdates",
-    "rules.CollectingNeighborUpdaterMixin_asyncFeederSimulator",
+    "rules.CollectingNeighborUpdaterMixin_asyncUpdates",
     "rules.ServerLevel_maxChainedNeighborUpdates"
   ],
   "client": [
